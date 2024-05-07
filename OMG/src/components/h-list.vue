@@ -24,12 +24,11 @@ setInterval(async () => {
   })
   if (is_change_on.value) h_array.value[changed_idx.value] = getRandom()
   else changed_idx.value = -1
-}, 3000)
+}, 1000)
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(({ isIntersecting }) => {
-    if (isIntersecting) is_change_on.value = true
-    if (!isIntersecting) is_change_on.value = false
+    is_change_on.value = isIntersecting ? true : false
   })
 })
 
