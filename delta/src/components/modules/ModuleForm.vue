@@ -56,6 +56,9 @@ const mock = {
   ]
 }
 
+interface InputFileEvent extends Event {
+  target: HTMLInputElement
+}
 const readFile = (file: File) => {
   return new Promise((resolve, reject) => {
     let reader = new FileReader()
@@ -69,8 +72,8 @@ const readFile = (file: File) => {
     reader.readAsDataURL(file)
   })
 }
-const loadFile = async (e, drop = false) => {
-  return await readFile(!drop ? e.target.files[0] : e.dataTransfer.files[0])
+const loadFile = async (e: InputFileEvent, drop = false) => {
+  return await readFile(!drop ? e.target.files?.[0] : e.dataTransfer.files[0])
 }
 
 const avatarFile = ref('')
